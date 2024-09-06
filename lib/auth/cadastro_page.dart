@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class CadastroPage extends StatelessWidget {
+  const CadastroPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,12 +11,14 @@ class LoginPage extends StatelessWidget {
           child: Container(
             margin: const EdgeInsets.all(24),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment:
+                  MainAxisAlignment.spaceEvenly, // Centraliza verticalmente
+              crossAxisAlignment:
+                  CrossAxisAlignment.center, // Centraliza horizontalmente
               children: [
                 _header(context),
                 _inputField(context),
-                _signup(context)
+                _signin(context),
               ],
             ),
           ),
@@ -29,10 +31,10 @@ class LoginPage extends StatelessWidget {
     return const Column(
       children: [
         Text(
-          "Bem-Vindo Novamente",
+          "Criar Conta",
           style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
         ),
-        Text("Entrar com suas credenciais para fazer login"),
+        Text("Digite suas informações para cria sua conta!"),
       ],
     );
   }
@@ -55,6 +57,18 @@ class LoginPage extends StatelessWidget {
         const SizedBox(height: 10),
         TextField(
           decoration: InputDecoration(
+            hintText: "Email",
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(18),
+                borderSide: BorderSide.none),
+            fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
+            filled: true,
+            prefixIcon: const Icon(Icons.email),
+          ),
+        ),
+        const SizedBox(height: 10),
+        TextField(
+          decoration: InputDecoration(
             hintText: "Senha",
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(18),
@@ -71,10 +85,10 @@ class LoginPage extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             shape: const StadiumBorder(),
             padding: const EdgeInsets.symmetric(vertical: 16),
-            backgroundColor: Colors.blueAccent,
+            backgroundColor: Colors.blueAccent, // Mudar cor de fundo do botão
           ),
           child: const Text(
-            "Login",
+            "Cadastrar",
             style: TextStyle(
                 fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
           ),
@@ -83,16 +97,16 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  _signup(context) {
+  _signin(context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text("Não tem uma conta?"),
+        const Text("Já tem uma conta?"),
         TextButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/cadastro');
+              Navigator.pushNamed(context, '/');
             },
-            child: const Text("Criar"))
+            child: const Text("Entrar"))
       ],
     );
   }
